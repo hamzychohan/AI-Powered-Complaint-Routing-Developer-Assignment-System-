@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medica | Premium AI Assistant</title>
+    <meta name="description" content="State of the art AI Clinical Assistant">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dynamic Background -->
+    <div class="ambient-background">
+        <div class="glow-orb orb-primary"></div>
+        <div class="glow-orb orb-secondary"></div>
+        <div class="glow-orb orb-accent"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="brand">
+                <div class="logo-box">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 2v9H2v2h9v9h2v-9h9v-2h-9V2h-2z" fill="url(#brand-gradient)" />
+                        <defs>
+                            <linearGradient id="brand-gradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00F0FF"/>
+                                <stop offset="1" stop-color="#7000FF"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h2>Medica</h2>
+            </div>
+            
+            <div class="nav-section">
+                <div class="section-title">CHATS</div>
+                <button class="nav-btn active">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    Clinical Query
+                </button>
+                <button class="nav-btn" onclick="setInput('What are the treatments for Serpiginous choroiditis?')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Guideline Review
+                </button>
+            </div>
+
+            <div class="nav-section mt-auto">
+                <button class="nav-btn user-profile">
+                    <div class="avatar-sm">AJ</div>
+                    <span>Dr. A. Jones</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Chat Area -->
+        <main class="chat-workspace">
+            <header class="workspace-header">
+                <div class="header-content">
+                    <h1>Clinical Query</h1>
+                    <span class="status-badge"><span class="pulse-dot"></span> AI Online</span>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn tooltip" data-tooltip="Clear Chat">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                    <button class="icon-btn tooltip toggle-panel" data-tooltip="Toggle Evidence" id="togglePanelBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="chat-scroll-area" id="chatHistory">
+                <!-- Welcome State -->
+                <div class="welcome-container" id="welcomeState">
+                    <div class="welcome-logo">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 2v9H2v2h9v9h2v-9h9v-2h-9V2h-2z" fill="url(#brand-gradient)" />
+                        </svg>
+                    </div>
+                    <h2>How can I assist you today?</h2>
+                    <p>I am your advanced clinical assistant, ready to review guidelines, analyze symptoms, and fetch medical evidence.</p>
+                    
+                    <div class="suggestion-grid">
+                        <button class="suggestion-card" onclick="setInput('What is the standard first-line treatment for NSCLC?')">
+                            <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div>
+                            <div class="card-text">
+                                <span class="card-title">Treatment Search</span>
+                                <span class="card-desc">First-line treatment for NSCLC</span>
+                            </div>
+                        </button>
+                        <button class="suggestion-card" onclick="setInput('What are the treatments for Serpiginous choroiditis?')">
+                            <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7000FF" stroke-width="2"><path d="M2 12h4l2-2 4 4 2-2 4 4h4"></path></svg></div>
+                            <div class="card-text">
+                                <span class="card-title">Guideline Check</span>
+                                <span class="card-desc">Serpiginous choroiditis guidelines</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-wrapper">
+                <form id="chatForm" class="glass-input-box">
+                    <button type="button" class="action-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
+                    </button>
+                    <input type="text" id="userInput" placeholder="Ask a clinical question..." autocomplete="off" required>
+                    <button type="button" class="action-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    </button>
+                    <button type="submit" class="send-btn" id="sendBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </form>
+                <div class="input-footer">AI-generated responses can be inaccurate. Always verify clinical information.</div>
+            </div>
+        </main>
+
+        <!-- Evidence Panel -->
+        <aside class="evidence-panel" id="contextPanel">
+            <div class="panel-header">
+                <h3>Retrieved Evidence</h3>
+                <span class="badge">RAG</span>
+            </div>
+            <div class="panel-scroll" id="contextBody">
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <p>Evidence sources will appear here when you ask a question.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Document Viewer Modal -->
+    <div class="doc-modal-overlay" id="docModalOverlay">
+        <div class="doc-modal">
+            <div class="doc-modal-header">
+                <h3 id="docModalTitle">Clinical Guideline</h3>
+                <button class="icon-btn" id="closeModalBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="doc-modal-content">
+                <div id="docModalLoading" class="loading-indicator" style="display: none; margin: 2rem auto;">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div id="docModalText" class="doc-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
